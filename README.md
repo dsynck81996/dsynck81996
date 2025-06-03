@@ -1,6 +1,7 @@
 - 👋 Hi, I’m @dsynck81996
+- I work in a K-12 school district as a software specialist and sysadmin
 - 👀 I’m interested in PowerShell, C#, SQL, MECM, and Intune
-- 🌱 I’m currently learning ... PowerShell and C#
+- 🌱 I’m currently learning PowerShell and C#
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
