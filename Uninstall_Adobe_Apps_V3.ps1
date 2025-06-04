@@ -3,37 +3,36 @@
   Adobe Products Uninstaller
 
   .DESCRIPTION
-  This script removes all Adobe products including Acrobat (all versions), Adobe CC 2019, Adobe CC 2020, Adobe CC 2022, Adobe CC 2023, Adobe CC 2024,  
-  Adobe CS6 (including Dreanweaver and Premier Pro), and miscellaneous other versions of Adobe products that have been requested in the past.
+  This script removes all Adobe products including Acrobat (all versions), Adobe CC 2019, Adobe CC 2020, Adobe CC 2022, Adobe CC 2023, 
+  Adobe CS6 (including Dreanweaver and Premier Pro), and miscellaneous other versions of Adobe products that 
+  have been requested in the past.
 
   .EXAMPLE
     
   .NOTES
-  Version:        1.4
+  Version:        1.0
   Author:         David Synck
   Creation Date:  20 April 2023
-  Modified Date:  03 June 2025
+  Modified Date:  08 January 2025
   Purpose/Change: Initial version
                   Commented out removal of Adobe CS6 products
                   Re-enabled removal of CS6 products becuase we are removing it in labs with Adobe CC
                   Also removed "Ladder Code"
-
-                  6/3/2025 - Commented out CC 2019 and CC 2020
-                  6/3/2025 - Commented out Photoshop version 22.5.6, Photoshop version 24.7.1, After Effects W/ Maxon Cinema 4D version 23.5, and XD version 45.0.62
-                  6/2/2025 - Added removal of Media Encoder 2025
-                  6/2/2025 - Added removal of Bridge 2024
-                  6/2/2025 - Added removal of Audition 2025
-                  6/2/2025 - Added removal of CC 2024
-                  1/8/2025 - Added removal of CC "All Apps" 2020
-                  1/8/2025 - Added removal of CC "All Apps" 2019
+                  6/3/2024 - Added removal of CC "All Apps" 2022
+                  6/3/2024 - Added removal of CC "All Apps" 2023
                   6/4/2024 - Added removal of Photoshop version 22.5.6
                   6/4/2024 - Added removal of Photoshop version 24.7.1 (deployed to collection "Photoshop. See removal notes below")
                   6/4/2024 - Added removal of After Effects W/ Maxon Cinema 4D version 23.5
                   6/4/2024 - Added removal of XD version 45.0.62
-                  6/3/2024 - Added removal of CC "All Apps" 2023
-                  6/3/2024 - Added removal of CC "All Apps" 2022
+                  1/8/2025 - Added removal of CC "All Apps" 2019
+                  1/8/2025 - Added removal of CC "All Apps" 2020   
   Link:           
 #>
+
+# Uninstall string for Adobe CC 2024 - {f96321a7-f597-42c7-b9a2-f2938f6a4d30} - For future use
+# Uninstall string for Adobe Bridge 2024 - {35ea22b0-3774-47df-a6c0-baee7125db20} - For future use
+# Uninstall string for Adobe Audition 2024 - {268c2dc8-af46-43b4-b36a-63348da82b6f} - For future use
+# Uninstall string for Adobe Media Encoder 2025 - {2cfeabae-c4ae-4954-9008-afb20233711a} - For future use
 
 $ErrorActionPreference = 'SilentlyContinue'
 
@@ -44,14 +43,13 @@ $var0 = (Get-Package -Name "*Acrobat*" -AllVersions -Force -ErrorAction $ErrorAc
 # Next, start the uninstall process, package by package
 
 Try {
-    $process00 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {$var0} /qn" -PassThru
-    $process00.WaitForExit()
+    $process0 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {$var0} /qn" -PassThru
+    $process0.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
 }
 
-<#
 # Remove Adobe CC 2019 "All Apps", if found anywhere
 
 Try {
@@ -71,13 +69,12 @@ Try {
 Catch {
     Write-Host "Hit an error or package doesn't exist"
 }
-#>
 
 # Remove Adobe CC 2022 "All Apps", if found anywhere
 
 Try {
-    $process01 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {08cf4373-6196-45ec-ab75-abf5e866119d} /qn" -PassThru
-    $process01.WaitForExit()
+    $process1 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {08cf4373-6196-45ec-ab75-abf5e866119d} /qn" -PassThru
+    $process1.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
@@ -86,24 +83,12 @@ Catch {
 # Remove Adobe CC 2023 "All Apps"
 
 Try {
-    $process02= Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {70378fc6-ef90-428e-a17d-7d6f99127559} /qn" -PassThru
-    $process02.WaitForExit()
+    $process1 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {70378fc6-ef90-428e-a17d-7d6f99127559} /qn" -PassThru
+    $process1.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
 }
-
-# Remove Adobe CC 2024 "All Apps"
-
-Try {
-    $process03 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {f96321a7-f597-42c7-b9a2-f2938f6a4d30} /qn" -PassThru
-    $process03.WaitForExit()
-}
-Catch {
-    Write-Host "Hit an error or package doesn't exist"
-}
-
-<#
 
 # Remove Adobe XD version 45.0.62
 
@@ -146,45 +131,13 @@ Catch {
     Write-Host "Hit an error or package doesn't exist"
 }
 
-#>
-
-# Remove Audition 2025
-
-Try {
-    $process04 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {268c2dc8-af46-43b4-b36a-63348da82b6f} /qn" -PassThru
-    $process04.WaitForExit()
-}
-Catch {
-    Write-Host "Hit an error or package doesn't exist"
-}
-
-# Remove Bridge 2024
-
-Try {
-    $process05 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {35ea22b0-3774-47df-a6c0-baee7125db20} /qn" -PassThru
-    $process05.WaitForExit()
-}
-Catch {
-    Write-Host "Hit an error or package doesn't exist"
-}
-
-# Remove Media Encoder 2025
-
-Try {
-    $process06 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {2cfeabae-c4ae-4954-9008-afb20233711a} /qn" -PassThru
-    $process06.WaitForExit()
-}
-Catch {
-    Write-Host "Hit an error or package doesn't exist"
-}
-
 # Lastly, we also need to remove Acrobat Pro X, CS6 Design Web Premium, CS6 Dreamweaver, and CS6 Premier Pro, if they are installed
 
 # Remove Acrobat Pro X
 
 Try {
-    $process07 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {AC76BA86-1033-F400-7760-000000000005} /qn" -PassThru
-    $process07.WaitForExit()
+    $process2 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {AC76BA86-1033-F400-7760-000000000005} /qn" -PassThru
+    $process2.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
@@ -193,8 +146,8 @@ Catch {
 # Remove Adobe CS6
 
 Try {
-    $process08 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {670F2DCF-BE94-4889-9D32-5ECD083C6BD9} /qn" -PassThru
-    $process08.WaitForExit()
+    $process3 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {670F2DCF-BE94-4889-9D32-5ECD083C6BD9} /qn" -PassThru
+    $process3.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
@@ -203,8 +156,8 @@ Catch {
 # Remove CS6 Dreamweaver
 
 Try {
-    $process09 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {58B8BC87-C890-4EDE-AA7B-A634E9089D55} /qn" -PassThru
-    $process09.WaitForExit()
+    $process4 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {58B8BC87-C890-4EDE-AA7B-A634E9089D55} /qn" -PassThru
+    $process4.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
@@ -213,8 +166,8 @@ Catch {
 # Remove CS6 Premier Pro
 
 Try {
-    $process10 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {A92911D4-680A-40F8-9477-2DAA9EB63498} /qn" -PassThru
-    $process10.WaitForExit()
+    $process5 = Start-Process C:\Windows\System32\msiexec.exe -ArgumentList "/uninstall {A92911D4-680A-40F8-9477-2DAA9EB63498} /qn" -PassThru
+    $process5.WaitForExit()
 }
 Catch {
     Write-Host "Hit an error or package doesn't exist"
